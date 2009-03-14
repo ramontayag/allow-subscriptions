@@ -16,7 +16,7 @@ class Subscription < ActiveRecord::Base
   protected
 
   def validate
-    errors.add("That is not subscribable") if subscribable.subscribable? == false
     errors.add("User has already subscribed") if subscribable.subscribed_by?(user)
+    errors.add("That is not subscribable") if !subscribable.subscribable?
   end
 end
