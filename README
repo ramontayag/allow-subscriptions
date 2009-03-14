@@ -11,6 +11,7 @@ Installation
   c) config/routes.rb to contain "map.resources :subscriptions"
 2) Add "allow_subscriptions" to the model that will become subscriptionable.  See the example section.
 3) Add a "subscribable?" method that returns a boolean to evaluate if instance is subscribable or not.
+4) Add "has_many :subscriptions, :dependent => :destroy" to your User model
 
 
 Usage
