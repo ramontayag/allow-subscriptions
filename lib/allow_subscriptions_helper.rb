@@ -4,9 +4,11 @@ module RamonTayag
 			def link_to_subscription(object, options={})
 				options[:logged_out_text] ||= ""
 				if logged_in?
-					options.delete(:logged_out_text)
 					unsubscribe_confirm = options[:unsubscribe_confirm]
 					subscribe_confirm = options[:subscribe_confirm]
+					options.delete(:logged_out_text)
+					options.delete(:unsubscribe_confirm)
+					options.delete(:subscribe_confirm)
 					if object.subscribed_by?(current_user)
 						link_to_unsubscribe(object, options.merge!(:text => options[:unsubscribe_text], :confirm => unsubscribe_confirm))
 					else
