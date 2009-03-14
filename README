@@ -7,9 +7,8 @@ Installation
 =======
 1) Run script/generate allow_subscriptions.  I did this so you can edit the files to your liking easily.  This will create/edit the following files
   a) app/controllers/subscriptions_controller.rb
-  b) app/views/subscriptions/_form.html.erb : to be used IF you added your own custom fields.  The explanation can be found below.
-  c) app/models/subscription.rb
-  d) config/routes.rb to contain "map.resources :subscriptions"
+  b) app/models/subscription.rb
+  c) config/routes.rb to contain "map.resources :subscriptions"
 2) Add "allow_subscriptions" to the model that will become subscriptionable.  See the example section.
 
 
