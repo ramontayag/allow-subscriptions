@@ -1,0 +1,38 @@
+AllowSubscriptions
+==============
+
+This is heavily based on Juixe's acts_as_voteable.  I just did a bunch of changes for it to manage subscriptions instead of votes.
+
+Installation
+=======
+1) Run script/generate allow_subscriptions.  I did this so you can edit the files to your liking easily.  This will create/edit the following files
+  a) app/controllers/subscriptions_controller.rb
+  b) app/views/subscriptions/_form.html.erb : to be used IF you added your own custom fields.  The explanation can be found below.
+  c) app/models/subscription.rb
+  d) config/routes.rb to contain "map.resources :subscriptions"
+2) Add "allow_subscriptions" to the model that will become subscriptionable.  See the example section.
+
+
+Usage
+=======
+1) If you want to put conditions to check whether or not a subscription can be created, put a method in your subscribable class called "subscribable?" that returns true or false based on your own requirements.
+
+Helpers
+=======
+There are helpers included to make links that automatically create the vote.  These helpers should only be used if you don't need to add any custom fields to the votes table.
+1) link_to_subscribe(text, object)
+- Usage: link_to_subscribe("Subscribe!", record)
+2) link_to_unsubscribe(text, object)
+- Usage: link_to_unsubscribe("Unsubscribe!", record)
+3) link_to_subscription
+- Usage: link_to_subscription(object, :subscribe_text => "Subscribe!", :unsubscribe_text => "Unsubscribe!")
+
+Example
+=======
+
+1) Make your ActiveRecord model allow_subscriptions.
+  class Model < ActiveRecord::Base
+    allow_subscriptions
+  end
+
+Copyright (c) March 2009 Ramon Tayag, released under the MIT license
