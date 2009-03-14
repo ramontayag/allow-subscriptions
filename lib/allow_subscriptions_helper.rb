@@ -18,18 +18,22 @@ module RamonTayag
       def link_to_subscribe(object, options = {})
 				options[:text] ||= "Subscribe"
 				text = options[:text]
+				confirm = options[:confirm]
         options.merge!({:subscribable_id => object.id, :subscribable_type => object.class.name})
 				options.delete(:text)
-        link_to(text, subscriptions_path(options), :confirm => options[:confirm], :method => :post)
+				options.delete(:confirm)
+        link_to(text, subscriptions_path(options), :confirm => confirm, :method => :post)
       end
 
       def link_to_unsubscribe(object, options = {})
 				options[:text] ||= "Unsubscribe"
 				options[:confirm] ||= "Are you sure?"
 				text = options[:text]
+				confirm = options[:confirm]
         options.merge!({:subscribable_id => object.id, :subscribable_type => object.class.name})
 				options.delete(:text)
-        link_to(text, subscription_path(options), :confirm => options[:confirm], :method => :delete)
+				options.delete(:confirm)
+        link_to(text, subscription_path(options), :confirm => confirm, :method => :delete)
       end
     end
   end
