@@ -1,13 +1,13 @@
 #heavily based on Juixe's acts_as_subscribable
 module RamonTayag
-  module Gawing
-    module Subscriptionable
+  module Allow
+    module Subscriptions
       def self.included(base)
         base.extend ClassMethods
       end
 
       module ClassMethods
-        def gawing_subscribable
+        def allow_subscriptions
           has_many :subscriptions, :as => :subscribable, :dependent => :delete_all
           include RamonTayag::Allow::Subscriptions::InstanceMethods
           extend RamonTayag::Allow::Subscriptions::SingletonMethods
@@ -16,7 +16,7 @@ module RamonTayag
 
       # This module contains class methods
       module SingletonMethods
-        def find_subscriptions_of(user)
+        def subscriptions_of(user)
           subscribable = ActiveRecord::Base.send(:class_name_of_active_record_descendant, self).to_s
           Subscription.find(:all,
             :conditions => ["user_id = ? and subscribable_type = ?", user.id, subscribable],

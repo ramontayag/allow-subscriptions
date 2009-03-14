@@ -5,9 +5,9 @@ module RamonTayag
 				options[:logged_out_text] ||= ""
 				if logged_in?
 					if object.subscribed_by?(current_user)
-						link_to_unsubscribe(object, options.marge!(:unsubscribe_text => options[:unsubscribe_text])
+						link_to_unsubscribe(object, options.marge!(:unsubscribe_text => options[:unsubscribe_text]))
 					else
-						link_to_subscribe(object, options.marge!(:subscribe_text => options[:subscribe_text])
+						link_to_subscribe(object, options.marge!(:subscribe_text => options[:subscribe_text]))
 					end
 				else
 					options[:logged_out_text]
