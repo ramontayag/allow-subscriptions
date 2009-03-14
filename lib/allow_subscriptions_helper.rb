@@ -17,7 +17,6 @@ module RamonTayag
 			
       def link_to_subscribe(object, options = {})
 				options[:text] ||= "Subscribe"
-				options[:confirm] ||= "Are you sure?"
 				text = options[:text]
         options.merge!({:subscribable_id => object.id, :subscribable_type => object.class.name})
 				options.delete(:text)
