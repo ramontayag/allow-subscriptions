@@ -1,17 +1,29 @@
 module RamonTayag
-  module Gawing
-    module VoteableHelper
-      def link_to_vote(text, object, vote, options = {})
-        options.merge!({:voteable_id => object, :voteable_type => object.class.name, :vote => vote})
-        link_to(text, votes_path(options), :method => :post)
+  module Allow
+    module SubscriptionsHelper
+			def link_to_subscription(object, options={})
+				options[:logged_out_text] ||= ""
+				if logged_in?
+					if object.subscribed_by?(current_user)
+						link_to_unsubscribe(object, options.marge!(:unsubscribe_text => options[:unsubscribe_text])
+					else
+						link_to_subscribe(object, options.marge!(:subscribe_text => options[:subscribe_text])
+					end
+				else
+					options[:logged_out_text]
+				end
+			end
+			
+      def link_to_subscribe(object, options = {})
+				options[:text] ||= "Subscribe"
+        options.merge!({:subscribable_id => object.id, :subscribable_type => object.type})
+        link_to(options[:text], subscriptions_path(options), :method => :post)
       end
 
-      def link_to_vote_unless(boolean, text, object, vote, options = {})
-        if boolean
-          return link_to_vote(text, object, vote, options)
-        else
-          return text
-        end
+      def link_to_unsubscribe(object, options = {})
+				options[:text] ||= "Unsubscribe"
+        options.merge!({:subscribable_id => object.id, :subscribable_type => object.type})
+        link_to(options[:text], subscriptions_path(options), :method => :destroy)
       end
     end
   end
