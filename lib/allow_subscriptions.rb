@@ -35,6 +35,10 @@ module RamonTayag
         def subscribers
           self.subscriptions.collect(&:user)
         end
+
+				def subscribe(user)
+					Subscription.create(:user_id => user.id, :subscribable_type => self.class.name, :subscribable_id => self.id)
+				end
         
         def subscribed_by?(user)
           if user
