@@ -30,7 +30,7 @@ module RamonTayag
         options.merge!({:subscribable_id => object.id, :subscribable_type => object.class.name})
 				options.delete(:text)
 				options.delete(:confirm)
-        link_to(text, subscriptions_path(options), :confirm => confirm, :method => :post)
+        link_to(text, subscriptions_path(options.merge!(:to => options[:to])), :confirm => confirm, :method => :post)
       end
 
       def link_to_unsubscribe(object, options = {})
@@ -41,7 +41,7 @@ module RamonTayag
         options.merge!({:subscribable_id => object.id, :subscribable_type => object.class.name})
 				options.delete(:text)
 				options.delete(:confirm)
-        link_to(text, subscription_path(options), :confirm => confirm, :method => :delete)
+        link_to(text, subscription_path(options.merge!(:to => options[:to])), :confirm => confirm, :method => :delete)
       end
     end
   end

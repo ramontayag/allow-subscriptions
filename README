@@ -35,6 +35,9 @@ There are helpers included to make links that automatically create the vote.  Th
 - If user is logged in, then it will show link_to_subscribe or link_to_unsubscribe based on whether or not the user has subscribed to the object.  If the user is not logged in, then it will show nothing, but this can be overridden by adding a :logged_out_text param.
 - Usage: link_to_subscription(object, :subscribe_text => "Subscribe!", :unsubscribe_text => "Unsubscribe!", :logged_out_text => "You need to login to subscribe to this.")
 
+For the helpers above, you can pass an option :to which will return the user to the provided path. Defaults to the subscribable record. Ex:
+link_to_subscription record, :to => home_path
+
 Example
 =======
 
