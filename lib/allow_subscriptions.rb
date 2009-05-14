@@ -11,6 +11,10 @@ module RamonTayag
           has_many :subscriptions, :as => :subscribable, :dependent => :delete_all
           include RamonTayag::Allow::Subscriptions::InstanceMethods
           extend RamonTayag::Allow::Subscriptions::SingletonMethods
+
+          def self.subscribable?
+            true
+          end
         end
       end
 
