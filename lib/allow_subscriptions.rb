@@ -40,18 +40,21 @@ module RamonTayag
           self.subscriptions.collect(&:user)
         end
 
+				def subscribe!(user)
+					Subscription.create!(:user_id => user.id, :subscribable_type => self.class.name, :subscribable_id => self.id) unless self.subscription_of(user)
+				end
+
 				def subscribe(user)
-					Subscription.create(:user_id => user.id, :subscribable_type => self.class.name, :subscribable_id => self.id)
+					logger.warning "Subscribe will be deprecated soon!"
+					self.subscribe!(user)
 				end
         
         def subscribed_by?(user)
-          if user
-            self.subscriptions.each do |v|
-              return true if user == v.user
-            end
-          end
-          false
-          #true
+					if user
+						return !self.subscription_of(user).nil?
+					else
+						return false
+					end
         end
 
         #finds the subscription of the given user
