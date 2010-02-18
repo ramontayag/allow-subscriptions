@@ -45,7 +45,7 @@ module RamonTayag
 				end
 
 				def subscribe(user)
-					logger.warning "Subscribe will be deprecated soon!"
+					puts "subscribe(user) will be deprecated soon. User subscribe!(user) instead."
 					self.subscribe!(user)
 				end
         
